@@ -1,28 +1,43 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
 
 export default {
-  name: 'App',
-  components: {
-    HelloWorld
+  name: 'Main',
+  mounted() {
+    this.analyticsSetting()
+    // remove loader when load finish
+    let loaderElement = document.getElementById('loader')
+    if (loaderElement) {
+      loaderElement.style.display = 'none'
+    }
+  },
+  methods: {
+    analyticsSetting() {
+      var analytics=window.analytics=window.analytics||[];
+      if(!analytics.initialize) {
+        analytics.invoked=!0;
+        analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","debug","page","once","off","on","addSourceMiddleware","addIntegrationMiddleware","setAnonymousId","addDestinationMiddleware"];
+        analytics.factory=  function(e) {
+          return function() {
+            var t=  Array.prototype.slice.call(arguments);
+            t.unshift(e);analytics.push(t);return analytics
+          }
+        };
+        for(var e=0;e<analytics.methods.length;e++) {
+          var key=analytics.methods[e];analytics[key]=analytics.factory(key)
+        }
+      }
+    }
   }
 }
 </script>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+<style lang="sass">
+.table-container
+  width: 100%
 </style>
