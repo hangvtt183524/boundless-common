@@ -2,6 +2,7 @@ import Vue from 'vue';
 import singleSpaVue from 'single-spa-vue';
 
 import App from './App.vue';
+import router from "@/router";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 
 Vue.config.productionTip = false;
@@ -20,6 +21,7 @@ const vueLifecycles = singleSpaVue({
         props: {},
       });
     },
+    router
   },
 });
 
