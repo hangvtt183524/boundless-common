@@ -37,7 +37,8 @@ export default {
 }
 </script>
 
-<style lang="sass">
-.table-container
-  width: 100%
+<style>
+.table-container {
+  width: 100%;
+}
 </style>
