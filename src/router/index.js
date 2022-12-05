@@ -5,6 +5,10 @@ import Router from 'vue-router'
 // ----------------------------------
 import LoginAuthToken from "@/components/login/login-auth-token";
 
+// Users
+// ----------------------------------
+import EmailVerification from '@/components/registration/email-verification'
+
 // Errors
 // ----------------------------------
 import ErrorPage from '@/components/pages/error-page'
@@ -21,6 +25,12 @@ let router = new Router({
                 descriptiveName: 'Login',
                 requiresUnAuthenticated: true
             }
+        },
+        {
+            path: '/email-verification/:token/:email',
+            name: 'email-verification',
+            component: EmailVerification,
+            props: true
         },
         {
             path: '/error/:errorCode',
