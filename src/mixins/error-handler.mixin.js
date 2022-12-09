@@ -39,6 +39,25 @@ export default {
             } else {
                 this.clearErrorData()
             }
+        },
+        getErrorCodes (key, obj = null) {
+            let data = this.errorData
+            if (obj) {
+                data = obj
+            }
+            const error = key in data ? data[key] : null
+            if (error) {
+                if (Array.isArray(error)) {
+                    return error.map(item => {
+                        return 'code' in item ? item.code : []
+                    })
+                } else if (typeof error === 'string') {
+                    return [error]
+                } else if (typeof error === 'object' && 'code' in error) {
+                    return Array.isArray(error.code) ? error.code : [error.code]
+                }
+            }
+            return []
         }
     }
 }
