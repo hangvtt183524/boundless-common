@@ -4,8 +4,8 @@ import Ls from '@/services/ls'
 import * as actions from './actions'
 import * as getters from './getters'
 
-import menu from '@/components/layout/menu.js'
-import toolbarMenu from '@/components/layout/menu-toolbar.js'
+import menu from './menu.js'
+import toolbarMenu from './menu-toolbar.js'
 
 const initialState = {
   userWorkspaces: [],

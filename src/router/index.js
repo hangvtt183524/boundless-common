@@ -8,6 +8,7 @@ import LoginAuthToken from "@/components/login/login-auth-token";
 // Users
 // ----------------------------------
 import EmailVerification from '@/components/registration/email-verification'
+import InviteSignup from '@/components/registration/invite-signup'
 
 // Errors
 // ----------------------------------
@@ -31,6 +32,11 @@ let router = new Router({
             name: 'email-verification',
             component: EmailVerification,
             props: true
+        },
+        {
+            path: '/sign-up/invite',
+            component: InviteSignup,
+            name: 'invite-signup'
         },
         {
             path: '/error/:errorCode',
