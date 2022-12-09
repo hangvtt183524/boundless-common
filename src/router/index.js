@@ -9,6 +9,7 @@ import LoginAuthToken from "@/components/login/login-auth-token";
 // ----------------------------------
 import EmailVerification from '@/components/registration/email-verification'
 import InviteSignup from '@/components/registration/invite-signup'
+import AuthTokenSignup from "@/components/registration/auth-token-signup";
 
 // Errors
 // ----------------------------------
@@ -37,6 +38,17 @@ let router = new Router({
             path: '/sign-up/invite',
             component: InviteSignup,
             name: 'invite-signup'
+        },
+        {
+            path: '/sign-up/invite/:organizationSlug',
+            component: InviteSignup,
+            name: 'invite-signup',
+            props: true
+        },
+        {
+            path: '/sign-up/auth-token',
+            component: AuthTokenSignup,
+            name: 'auth-token-signup'
         },
         {
             path: '/error/:errorCode',
