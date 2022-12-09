@@ -129,7 +129,7 @@ export default {
 
 .invite-signup {
   flex: 1;
-  background: url('@/assets/images/background.png') no-repeat center center;
+  background: url('../../assets/images/background.png') no-repeat center center;
   background-size: cover;
 }
 

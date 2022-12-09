@@ -23,5 +23,35 @@ export default {
         }
 
         return localStorage.getItem(key)
+    },
+
+    getJson (key, defaultValue) {
+        try {
+            const value = this.get(key)
+            return value !== null ? JSON.parse(value) : defaultValue
+        } catch (e) {
+            return defaultValue || {}
+        }
+    },
+
+    updateInJson (key, field, value) {
+        const data = this.getJson(key, {})
+        data[field] = value
+
+        try {
+            this.set(key, JSON.stringify(data))
+        } catch (e) {
+            return false
+        }
+
+        return true
+    },
+
+    set (key, val) {
+        localStorage.setItem(key, val)
+    },
+
+    remove (key) {
+        localStorage.removeItem(key)
     }
 }
