@@ -11,9 +11,17 @@ import EmailVerification from '@/components/registration/email-verification'
 import InviteSignup from '@/components/registration/invite-signup'
 import AuthTokenSignup from "@/components/registration/auth-token-signup";
 
+// Layouts
+// ----------------------------------
+import LayoutLogin from "@/components/layouts/layout-login";
+
 // Errors
 // ----------------------------------
 import ErrorPage from '@/components/pages/error-page'
+
+// Routes
+// ----------------------------------
+import AuthRoutes from './auth'
 
 Vue.use(Router)
 
@@ -55,7 +63,15 @@ let router = new Router({
             name: 'error',
             component: ErrorPage,
             props: true
-        }
+        },
+        {
+            path: '/',
+            component: LayoutLogin,
+            meta: { requiresUnAuthenticated: true },
+            children: [
+                ...AuthRoutes
+            ]
+        },
     ],
     mode: 'history'
 })
