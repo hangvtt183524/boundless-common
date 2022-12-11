@@ -164,9 +164,6 @@ export default {
     ErrorHandlerMixin,
     NodeSelectionsMixin
   ],
-  // components: {
-  //   TelInput
-  // },
   mounted () {
     this.formData = Object.assign({}, this.formData, this.$route.query)
     if (this.$route.query.email) {
