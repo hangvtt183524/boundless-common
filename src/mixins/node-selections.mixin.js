@@ -3,6 +3,7 @@ import Ls from '@/services/ls'
 import { mapActions, mapGetters } from 'vuex'
 import ProductOrganizationsMixin from "@/mixins/product-organizations.mixin";
 import CurrentProductSelectionsMixin from "@/mixins/current-product-selections.mixin";
+import CurrentNodeSelectionsMixin from "@/mixins/current-node-selections.mixin";
 
 let NodeSelectionsMixin = {
     data () {
@@ -25,6 +26,7 @@ let NodeSelectionsMixin = {
         }
     },
     mixins: [
+        CurrentNodeSelectionsMixin,
         CurrentProductSelectionsMixin,
         ProductOrganizationsMixin
     ],
@@ -154,6 +156,16 @@ let NodeSelectionsMixin = {
         },
         redirectToProductDefaultPage (product) {
             this.$router.push({ name: product.default_page, params: this.getRouteParams() })
+        },
+        getMenuItemRoute (menuItem) {
+            return menuItem.route
+        },
+        redirectToNode (parentNode, childNodeId) {
+            const paramOrgId = this.$route.params.orgId
+            const paramNodeId = this.$route.params.nodeId
+            const paramWorkspaceId = this.$route.params.workspaceId
+
+            const routeLayouts = this.getRouteLayouts()
         }
     }
 }
