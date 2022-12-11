@@ -3,7 +3,7 @@ import apiService from '@/api/api.service'
 
 const actions = {
 
-  bootstrap ({ commit, dispatch }) {
+  bootstrap ({ dispatch }) {
     return dispatch('user/fetchCurrentUser')
   },
 

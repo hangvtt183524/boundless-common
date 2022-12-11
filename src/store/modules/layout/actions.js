@@ -88,3 +88,8 @@ export const clearOrganizationSelections = ({ commit }) => {
     commit(types.SELECT_ORGANIZATION, { id: null })
     commit(types.SELECT_NODE, { })
 }
+
+export const setActiveProductIndex = ({ commit }, index) => {
+    Ls.updateInJson('layout.state', 'activeProductIndex', index)
+    commit(types.SET_ACTIVE_PRODUCT_INDEX, index)
+}
