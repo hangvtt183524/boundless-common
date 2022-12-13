@@ -250,6 +250,7 @@ export default {
           // EventTracker.sendEvent(EVENT_NAMES.USER_LOGGED_IN_VIA_PASSWORD)
         }
       }).catch(error => {
+        this.loading = false
         this.setErrorData(error)
         if (error.response
             && error.response.data
