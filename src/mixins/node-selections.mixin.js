@@ -37,7 +37,8 @@ let NodeSelectionsMixin = {
     },
     methods: {
         ...mapActions('layout', ['fetchUserWorkspaces', 'selectWorkspace', 'clearWorkspaceSelections',
-        'fetchUserWorkspaceOrganizations', 'selectOrganization', 'selectNode', 'clearOrganizationSelections']),
+        'fetchUserWorkspaceOrganizations', 'selectOrganization', 'selectNode', 'clearOrganizationSelections',
+        'fetchUserOrganizationNodes']),
 
         selectActiveWorkspace () {
             let workspaceId = Number.parseInt(this.$route.params.workspaceId)
@@ -166,6 +167,78 @@ let NodeSelectionsMixin = {
             const paramWorkspaceId = this.$route.params.workspaceId
 
             const routeLayouts = this.getRouteLayouts()
+
+            if (
+                (parentNode.type === this.rootNodeTypes.organization && routeLayouts.second === this.layouts.organization &&
+                    paramOrgId === parentNode.id && paramNodeId === childNodeId) ||
+                (parentNode.type === this.rootNodeTypes.workspace && routeLayouts.second === this.layouts.workspace &&
+                    paramWorkspaceId === parentNode.id)
+            ) {
+                return false
+            }
+
+            if (parentNode.type === this.rootNodeTypes.workspace && this.isOnOrganizationProduct) {
+                // If changing workspace on an organization product, do not proceed with redirection. We will redirect to
+                // organization home on organizations load
+                return false
+            }
+
+            const params = { ...this.$route.params }
+            const query = { ...this.$route.query }
+
+            let name = this.$route.name
+
+                // Redirecting to workspace node
+            if (parentNode.type === this.rootNodeTypes.workspace) {
+                params.workspaceId = Number.parseInt(parentNode.id) || 0
+
+                // Open product home for newly selected workspace
+                name = this.activeProduct.default_page
+            } else if (parentNode.type === this.rootNodeTypes.organization) {
+                params.orgId = Number.parseInt(parentNode.id) || 0
+                params.nodeId = Number.parseInt(childNodeId) || 0
+
+                // Open product home for newly selected organization
+                name = this.activeProduct.default_page
+            }
+
+            this.$router.push({ name: name, params: params, query: query })
+        },
+        fetchCurrentOrganizationManagedNodes () {
+            return this.fetchUserOrganizationNodes({
+                orgId: this.organizationId,
+                filters: {
+                    layout: 'flat',
+                    types: 'organization,group,site,floor'
+                }
+            })
+        },
+        getProductsForRoute (route) {
+            const products = []
+            for (let index = 0; index < this.menu.length; index++) {
+                const product = this.menu[index]
+
+                for (let menuIndex = 0; menuIndex < product.submenu.length; menuIndex++) {
+                    const subMenuItem = product.submenu[menuIndex]
+
+                    if ((this.getMenuItemRoute(subMenuItem) === this.$route.name) &&
+                        (!subMenuItem.route_parameters || _.some([this.$route.params], subMenuItem.route_parameters))) {
+                        products.push(index)
+
+                        // Continue with next product
+                        break
+                    }
+
+                    // Current route matches one of menu item's tags
+                    if ((subMenuItem.tabs && subMenuItem.tabs.map(tab => this.getMenuItemRoute(tab)).indexOf(this.$route.name) > -1)) {
+                        products.push(index)
+
+                        // Continue with next product
+                        break
+                    }
+                }
+            }
+            return products
         }
     }
 }
