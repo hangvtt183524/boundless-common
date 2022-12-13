@@ -93,3 +93,23 @@ export const setActiveProductIndex = ({ commit }, index) => {
     Ls.updateInJson('layout.state', 'activeProductIndex', index)
     commit(types.SET_ACTIVE_PRODUCT_INDEX, index)
 }
+
+export const fetchUserOrganizationNodes = commit => {
+    let params = filters
+    if (!params) {
+        params = {
+            layout: 'tree',
+            types: 'organization,group,site'
+        }
+    }
+
+    const url = `${API_URL}/node/tree/?id=${orgId}`
+    return new Promise((resolve, reject) => {
+        axios.get(url, { params: params, suppressErrors: true }).then((response) => {
+            commit(types.UPDATE_USER_ORGANIZATION_NODES, response.data.data)
+            resolve(response)
+        }).catch((err) => {
+            reject(err)
+        })
+    })
+}
