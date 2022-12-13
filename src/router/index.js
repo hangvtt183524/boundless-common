@@ -14,10 +14,13 @@ import AuthTokenSignup from "@/components/registration/auth-token-signup";
 // Layouts
 // ----------------------------------
 import LayoutLogin from "@/components/layouts/layout-login";
+import LayoutMain from "@/components/layouts/layout-main";
 
 // Errors
 // ----------------------------------
 import ErrorPage from '@/components/pages/error-page'
+
+import Home from '@/components/pages/home'
 
 // Routes
 // ----------------------------------
@@ -72,6 +75,18 @@ let router = new Router({
                 ...AuthRoutes
             ]
         },
+        {
+            path: '/',
+            component: LayoutMain,
+            meta: { requiresAuth: true },
+            children: [
+                {
+                    path: '/',
+                    name: 'home',
+                    component: Home
+                },
+            ]
+        }
     ],
     mode: 'history'
 })
