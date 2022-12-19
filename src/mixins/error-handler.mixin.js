@@ -58,6 +58,40 @@ export default {
                 }
             }
             return []
+        },
+        getVueErrors (fieldName) {
+            if (!fieldName) {
+                return []
+            }
+            let validations = this.$options.validations
+            let field = this.$v
+            for (let key of fieldName.split('.')) {
+                validations = validations[key]
+                field = field[key]
+            }
+            if (!field.$dirty) return []
+
+            for (let validator of Object.keys(validations)) {
+                if (!field[validator]) {
+                    let message = ''
+                    if (validator === 'between') {
+                        const kwargs = {
+                            min: field.$params.between.min,
+                            max: field.$params.between.max
+                        }
+                        message = this.$t(`errors.${validator}`, kwargs)
+                    } else if (validator === 'maxLength') {
+                        const kwargs = {
+                            max: field.$params.maxLength.max
+                        }
+                        message = this.$t(`errors.${validator}`, kwargs)
+                    } else {
+                        message = this.$t(`errors.${validator}`)
+                    }
+                    return [message]
+                }
+            }
+            return []
         }
     }
 }

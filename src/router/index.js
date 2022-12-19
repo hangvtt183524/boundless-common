@@ -21,6 +21,7 @@ import LayoutMain from "@/components/layouts/layout-main";
 import ErrorPage from '@/components/pages/error-page'
 
 import Home from '@/components/pages/home'
+const UserProfile = () => import(/* webpackChunkName: "profile" */ '@/components/user/profile')
 
 // Routes
 // ----------------------------------
@@ -84,6 +85,31 @@ let router = new Router({
                     path: '/',
                     name: 'home',
                     component: Home
+                },
+                {
+                    path: 'profile',
+                    name: 'UserProfile',
+                    component: UserProfile,
+                    meta: {
+                        title: 'User Profile',
+                        descriptiveName: 'Profile'
+                    }
+                },
+                {
+                    path: '/captive/workspace/create',
+                    name: 'CreateWorkspace',
+                },
+                {
+                    path: '/captive/organization/create',
+                    name: 'CreateOrganizationModeSelect',
+                },
+                {
+                    path: '/captive/organization/create/manual',
+                    name: 'CreateOrganizationManual',
+                },
+                {
+                    path: '/captive/organization/create/quick',
+                    name: 'CreateOrganizationQuick',
                 },
             ]
         }
