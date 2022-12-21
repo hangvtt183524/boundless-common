@@ -111,7 +111,6 @@ export default {
 
 .google-sign-in-button {
   border-radius: 1px;
-  box-shadow: 0 2px 4px 0 rgb(0 0 0 / 25%);
   box-sizing: border-box;
   transition: background-color .218s,border-color .218s,box-shadow .218s;
   background-image: none;
@@ -153,7 +152,7 @@ export default {
 
   &:hover {
     background-color: #4285f4;
-    box-shadow: 0 0 3px 3px rgb(66 133 244 / 30%);
+    //box-shadow: 0 0 3px 3px rgb(66 133 244 / 30%);
   }
 
   &:active {

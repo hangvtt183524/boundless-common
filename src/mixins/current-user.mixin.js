@@ -30,6 +30,19 @@ let CurrentUserMixin = {
             return (format && typeof (format) === 'string')
                 ? dateValue.format(format) : dateValue.format(this.dateFormat)
         },
+        jsonFormatter (value) {
+            if (!value) {
+                return value
+            }
+
+            let formatted = JSON.stringify(value, null, 2)
+            const displayCharacterLimit = 200
+            if (formatted.length > displayCharacterLimit) {
+                formatted = formatted.substring(0, displayCharacterLimit) + '\n  ...\n}'
+            }
+
+            return formatted
+        },
     }
 }
 

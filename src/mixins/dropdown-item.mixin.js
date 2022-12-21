@@ -59,7 +59,7 @@ export default {
             })
             window.removeEventListener('resize', this.hideOptions)
         },
-        getScrollParents: function (element) {
+        getScrollParents(element) {
             const scrollParents = [document.body]
             let style = getComputedStyle(element)
             const excludeStaticParent = style.position === 'absolute'
@@ -80,6 +80,17 @@ export default {
             }
 
             return scrollParents
-        }
+        },
+        onDropdownHandleClick() {
+            if (this.disabled) {
+                return
+            }
+
+            if (this.menuVisible) {
+                this.hideOptions()
+            } else {
+                this.showOptions()
+            }
+        },
     }
 }

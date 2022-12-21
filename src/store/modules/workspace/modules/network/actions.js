@@ -17,3 +17,13 @@ export const fetchUserDashboards = ({ commit }, { workspaceId }) => {
         })
     })
 }
+
+export const fetchLongRunningJob = ({ commit, dispatch, state }, { workspaceId, jobId }) => {
+    return new Promise((resolve, reject) => {
+        axios.get(`${API_URL}/workspace/${workspaceId}/meraki/job/${jobId}/`).then((response) => {
+            resolve(response)
+        }).catch(err => {
+            reject(err)
+        })
+    })
+}

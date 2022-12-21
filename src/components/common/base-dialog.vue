@@ -10,16 +10,18 @@
       close
     </v-icon>
 
-    <v-card slot(name="header")>
-      <v-card-text>
-        <v-layout row>
-          <v-flex xs12>
-            <slot></slot>
-          </v-flex>
-        </v-layout>
-      </v-card-text>
-      <slot name="footer"></slot>
-    </v-card>
+    <template v-slot:header>
+      <v-card>
+        <v-card-text>
+          <v-layout row>
+            <v-flex xs12>
+              <slot></slot>
+            </v-flex>
+          </v-layout>
+        </v-card-text>
+        <slot name="footer"></slot>
+      </v-card>
+    </template>
   </v-dialog>
 </template>
 
