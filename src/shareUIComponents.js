@@ -10,6 +10,10 @@ import BaseButton from "@/components/v2/base-button";
 import JobTrackingModal from "@/components/v2/job-tracking-modal";
 import ConfirmModal from "@/components/v2/confirm-modal";
 import BaseRadio from "@/components/v2/base-radio";
+import BaseMultiSelect from "@/components/v2/base-multi-select";
+import MultiTextInput from "@/components/v2/multi-text-input";
+import BaseSwitch from "@/components/v2/base-switch";
+import DiscardConfirmModal from "@/components/v2/discard-confirm-modal";
 
 import ActivityLog from '@/components/activity-log/activity-log'
 import DeleteConfirmDialog from '@/components/settings/delete-confirm-dialog'
@@ -29,6 +33,10 @@ export {
     JobTrackingModal,
     ConfirmModal,
     BaseRadio,
+    BaseMultiSelect,
+    MultiTextInput,
+    BaseSwitch,
+    DiscardConfirmModal,
 
     ActivityLog,
     DeleteConfirmDialog,
