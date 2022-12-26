@@ -27,3 +27,13 @@ export const fetchLongRunningJob = ({ commit, dispatch, state }, { workspaceId, 
         })
     })
 }
+
+export const getMerakiEntities = ({ commit, state }, { workspaceId, entityType, ...filters }) => {
+    return new Promise((resolve, reject) => {
+        axios.get(`${API_URL}/workspace/${workspaceId}/meraki/entity/${entityType}/`, { params: filters }).then((response) => {
+            resolve(response)
+        }).catch(err => {
+            reject(err)
+        })
+    })
+}
