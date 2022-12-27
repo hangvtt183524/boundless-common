@@ -25,6 +25,8 @@ import DeleteConfirmDialog from '@/components/settings/delete-confirm-dialog'
 import DeleteProgressDialog from "@/components/settings/delete-progress-dialog";
 import InlineEditCell from "@/components/v2/inline-edit-cell";
 
+import VDropzone from "@/components/common/v-dropzone";
+
 export {
     SearchInput,
     BaseTextInput,
@@ -51,5 +53,7 @@ export {
     ActivityLog,
     DeleteConfirmDialog,
     DeleteProgressDialog,
-    InlineEditCell
+    InlineEditCell,
+
+    VDropzone
 }
