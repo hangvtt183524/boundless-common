@@ -18,6 +18,7 @@ import BaseDateRangeFilter from "@/components/v2/base-date-range-filter";
 import BaseMultiFilter from "@/components/v2/base-multi-filter";
 import BaseColumnSelector from "@/components/v2/base-column-selector";
 import BaseTabHeader from "@/components/v2/base-tab-header";
+import BaseTextArea from "@/components/v2/base-text-area";
 
 import ActivityLog from '@/components/activity-log/activity-log'
 import DeleteConfirmDialog from '@/components/settings/delete-confirm-dialog'
@@ -45,6 +46,7 @@ export {
     BaseMultiFilter,
     BaseColumnSelector,
     BaseTabHeader,
+    BaseTextArea,
 
     ActivityLog,
     DeleteConfirmDialog,

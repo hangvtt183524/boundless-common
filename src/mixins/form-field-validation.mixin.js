@@ -67,5 +67,11 @@ export default {
 
             return errors
         }
+    },
+    methods: {
+        onBlur () {
+            this.touched = true
+            this.$emit('blur')
+        }
     }
 }
