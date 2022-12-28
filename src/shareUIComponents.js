@@ -19,6 +19,8 @@ import BaseMultiFilter from "@/components/v2/base-multi-filter";
 import BaseColumnSelector from "@/components/v2/base-column-selector";
 import BaseTabHeader from "@/components/v2/base-tab-header";
 import BaseTextArea from "@/components/v2/base-text-area";
+import BaseFilter from "@/components/v2/base-filter";
+import EmptyState from "@/components/v2/empty-state";
 
 import ActivityLog from '@/components/activity-log/activity-log'
 import DeleteConfirmDialog from '@/components/settings/delete-confirm-dialog'
@@ -26,6 +28,7 @@ import DeleteProgressDialog from "@/components/settings/delete-progress-dialog";
 import InlineEditCell from "@/components/v2/inline-edit-cell";
 
 import VDropzone from "@/components/common/v-dropzone";
+import BaseDialog from "@/components/common/base-dialog";
 
 export {
     SearchInput,
@@ -49,11 +52,14 @@ export {
     BaseColumnSelector,
     BaseTabHeader,
     BaseTextArea,
+    BaseFilter,
+    EmptyState,
 
     ActivityLog,
     DeleteConfirmDialog,
     DeleteProgressDialog,
     InlineEditCell,
 
-    VDropzone
+    VDropzone,
+    BaseDialog
 }
