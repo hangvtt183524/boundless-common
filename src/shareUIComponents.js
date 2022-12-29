@@ -23,6 +23,7 @@ import BaseFilter from "@/components/v2/base-filter";
 import EmptyState from "@/components/v2/empty-state";
 import TableMultiSelect from "@/components/v2/table-multi-select";
 import ClickActionHeaderCell from "@/components/v2/click-action-header-cell";
+import TableMultiAdd from "@/components/v2/table-multi-add";
 
 import ActivityLog from '@/components/activity-log/activity-log'
 import DeleteConfirmDialog from '@/components/settings/delete-confirm-dialog'
@@ -58,6 +59,7 @@ export {
     EmptyState,
     TableMultiSelect,
     ClickActionHeaderCell,
+    TableMultiAdd,
 
     ActivityLog,
     DeleteConfirmDialog,
