@@ -21,6 +21,7 @@ import BaseTabHeader from "@/components/v2/base-tab-header";
 import BaseTextArea from "@/components/v2/base-text-area";
 import BaseFilter from "@/components/v2/base-filter";
 import EmptyState from "@/components/v2/empty-state";
+import TableMultiSelect from "@/components/v2/table-multi-select";
 
 import ActivityLog from '@/components/activity-log/activity-log'
 import DeleteConfirmDialog from '@/components/settings/delete-confirm-dialog'
@@ -54,6 +55,7 @@ export {
     BaseTextArea,
     BaseFilter,
     EmptyState,
+    TableMultiSelect,
 
     ActivityLog,
     DeleteConfirmDialog,
