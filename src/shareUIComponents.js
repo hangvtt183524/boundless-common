@@ -24,6 +24,7 @@ import EmptyState from "@/components/v2/empty-state";
 import TableMultiSelect from "@/components/v2/table-multi-select";
 import ClickActionHeaderCell from "@/components/v2/click-action-header-cell";
 import TableMultiAdd from "@/components/v2/table-multi-add";
+import BaseCard from "@/components/v2/base-card";
 
 import ActivityLog from '@/components/activity-log/activity-log'
 import DeleteConfirmDialog from '@/components/settings/delete-confirm-dialog'
@@ -60,6 +61,7 @@ export {
     TableMultiSelect,
     ClickActionHeaderCell,
     TableMultiAdd,
+    BaseCard,
 
     ActivityLog,
     DeleteConfirmDialog,
