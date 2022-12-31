@@ -33,6 +33,8 @@ import InlineEditCell from "@/components/v2/inline-edit-cell";
 
 import VDropzone from "@/components/common/v-dropzone";
 import BaseDialog from "@/components/common/base-dialog";
+import NodeNameInput from "@/components/common/node-name-input";
+import NodeSelect from "@/components/common/node-select";
 
 export {
     SearchInput,
@@ -69,5 +71,7 @@ export {
     InlineEditCell,
 
     VDropzone,
-    BaseDialog
+    BaseDialog,
+    NodeNameInput,
+    NodeSelect
 }
