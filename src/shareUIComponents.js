@@ -45,6 +45,7 @@ import DownloadControl from "@/components/common/download-control";
 import ColumnSelector from "@/components/common/column-selector";
 import PanelContainer from "@/components/common/panel-container";
 import ReadonlyInput from "@/components/common/readonly-input";
+import DateTimeRange from "@/components/common/date-time-range";
 
 export {
     SearchInput,
@@ -93,5 +94,6 @@ export {
     DownloadControl,
     ColumnSelector,
     PanelContainer,
-    ReadonlyInput
+    ReadonlyInput,
+    DateTimeRange
 }
