@@ -30,6 +30,7 @@ import 'vuetify/dist/vuetify.min.css'
 import 'toastr/build/toastr.min.css'
 import 'vue2-dropzone/dist/vue2Dropzone.min.css'
 import 'vue2-perfect-scrollbar/dist/vue2-perfect-scrollbar.css'
+import '@/styles/main.scss'
 
 /**
  * Global Axios Request Interceptor
