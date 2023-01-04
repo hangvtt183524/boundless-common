@@ -61,9 +61,7 @@ let NodeSelectionsMixin = {
             }
 
             // If current product is not an organization product, directly load initial page
-            if (!this.isOnOrganizationProduct) {
-                this.loadInitialPage()
-            }
+            this.loadInitialPage()
 
             this.fetchUserWorkspaceOrganizations({ workspaceId: workspace.id }).then(() => {
                 this.selectActiveOrganization()
@@ -83,22 +81,7 @@ let NodeSelectionsMixin = {
                 return
             }
 
-            const routeLayouts = this.getRouteLayouts()
-            if (routeLayouts.first === this.layouts.login
-                || routeLayouts.first === this.layouts.oauthLogin
-                || routeLayouts.first === this.layouts.inviteSignup
-                || routeLayouts.first === this.layouts.oauthSignup
-                || routeLayouts.first === this.layouts.register
-                || routeLayouts.second === this.layouts.home
-            ) {
-                // const layoutState = Ls.getJson('layout.state', {})
-                // if (!_.isNil(layoutState.activeProductIndex)) {
-                //     this.redirectToProductDefaultPage(this.menu[layoutState.activeProductIndex])
-                // } else {
-                //     this.$router.push({ name: 'home' })
-                // }
-                this.redirectToProductDefaultPage(this.menu[1])
-            }
+            this.redirectToProductDefaultPage(this.menu[1])
         },
         selectActiveOrganization () {
             let orgId = Number.parseInt(this.$route.params.orgId)
@@ -156,7 +139,8 @@ let NodeSelectionsMixin = {
             }
         },
         redirectToProductDefaultPage (product) {
-            this.$router.push({ name: product.default_page, params: this.getRouteParams() })
+            // this.$router.push({ name: product.default_page, params: this.getRouteParams() })
+            this.$router.push({ name: 'UserProfile' })
         },
         getMenuItemRoute (menuItem) {
             return menuItem.route

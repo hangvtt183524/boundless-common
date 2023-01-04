@@ -3,7 +3,7 @@
     <v-content>
       <div class="login-container">
         <div class="login-box">
-          <div class="login-container">
+          <div class="logo-container">
             <img class="logo-image" src="@/assets/images/boundless-logo.png">
             <p class="tag-line">Welcome to</p>
             <h3 class="logo-text">BOUNDLESS</h3>
@@ -11,6 +11,8 @@
 
           <router-view :auth="auth" :authenticated="authenticated" />
         </div>
+
+        <div class="login-bg"></div>
       </div>
     </v-content>
 
@@ -60,7 +62,7 @@ export default {
   max-width: 600px;
   flex: 1;
   background-color: white;
-  padding: 60px 150px;
+  padding: 30px 100px;
   max-height: 100vh;
   overflow-y: auto;
   display: flex;

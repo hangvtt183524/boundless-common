@@ -48,7 +48,7 @@
           >
             <div :class="pb.vteClass"></div>
             <strong>{{ pb.name }}</strong>
-            <span class="dial-code">+{{ pd.dialCode }}</span>
+            <span class="dial-code">+{{ pb.dialCode }}</span>
           </li>
         </ul>
       </div>

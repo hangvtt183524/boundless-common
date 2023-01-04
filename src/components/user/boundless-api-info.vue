@@ -14,7 +14,7 @@
             class="boundless-api-key"
             data-test="boundless-api-key"
             :append-icon="deleteIcon"
-            :append-icon-cb="showDeleteDialog"
+            @click:append="showDeleteDialog"
             :hint="hint"
             @click="copyToClipboard"
             label="API key"

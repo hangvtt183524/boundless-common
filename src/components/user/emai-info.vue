@@ -55,7 +55,7 @@ import { email, required } from 'vuelidate/lib/validators'
 import {mapActions} from "vuex";
 
 export default {
-  name: 'EmailInfo',
+  name: 'email-info',
   components: {
     EditablePanel
   },

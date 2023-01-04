@@ -8,9 +8,9 @@
       <preferences />
     </v-flex>
 
-    <v-flex xs12 md6 class="pa-2 pt-3">
-      <email-info />
-    </v-flex>
+<!--    <v-flex xs12 md6 class="pa-2 pt-3">-->
+<!--      <email-info />-->
+<!--    </v-flex>-->
 
     <v-flex xs12 md6 class="pa-2 pt-3">
       <password-info />
@@ -34,7 +34,7 @@
 <script>
 import PersonalInfo from "@/components/user/personal-info";
 import Preferences from "@/components/user/preferences";
-import EmailInfo from "@/components/user/emai-info"
+// import EmailInfo from "@/components/user/emai-info"
 import PasswordInfo from "@/components/user/password-info";
 import BoundlessApiInfo from "@/components/user/boundless-api-info";
 import TfaInfo from "@/components/user/tfa-info";
@@ -48,7 +48,7 @@ export default {
   components: {
     PersonalInfo,
     Preferences,
-    EmailInfo,
+    // EmailInfo,
     PasswordInfo,
     BoundlessApiInfo,
     TfaInfo,

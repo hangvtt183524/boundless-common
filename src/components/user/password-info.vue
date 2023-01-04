@@ -13,7 +13,7 @@
             counter="25"
             :rules="rules"
             :append-icon="passwordHidden ? 'visibility' : 'visibility_off'"
-            :append-icon-cb="() => passwordHidden = !passwordHidden"
+            @click:append="() => passwordHidden = !passwordHidden"
             :type="passwordHidden ? 'password' : 'text'"
             :error-messages="passwordErrors"
             @blur="$v.formData.password.$touch()"
@@ -30,7 +30,7 @@
             data-test="confirm-password"
             required
             :append-icon="passwordConfirmHidden ? 'visibility' : 'visibility_off'"
-            :append-icon-cb="() => passwordConfirmHidden = !passwordConfirmHidden"
+            @click:append="() => passwordConfirmHidden = !passwordConfirmHidden"
             :type="passwordConfirmHidden ? 'password' : 'text'"
             :error-messages="passwordConfirmErrors"
             @input="$v.formData.password_confirm.$touch()"

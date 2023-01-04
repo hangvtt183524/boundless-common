@@ -144,10 +144,6 @@ export default {
       this.samlToken = this.$route.query.saml_token
     }
 
-    if (this.$route.query.next_page) {
-      this.nextPage = this.$route.query.next_page
-    }
-
     if (this.organizationSlug) {
       this.getOrganizationIdentityProviders()
     }
@@ -197,7 +193,6 @@ export default {
       showForgotPasswordDialog: false,
       samlToken: null,
       emailDisabled: false,
-      nextPage: null,
       ssoProviders: {
         okta: "Okta",
         onelogin: "OneLogin",
@@ -239,10 +234,6 @@ export default {
         if (response.data.data.tfa_mode) {
           this.$router.push({ name: 'login2fa', query: this.$route.query })
         } else {
-          if (this.nextPage) {
-            this.$router.push(this.nextPage)
-          }
-
           this.fetchUserWorkspaces().then(() => {
             this.selectActiveWorkspace()
           })

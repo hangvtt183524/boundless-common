@@ -114,16 +114,8 @@ export default {
       this.clearWorkspaceUserSecurityChecks()
     },
     performPermittedProductChecks () {
-      const permittedProducts = this.menu.filter(product => this.isProductPermitted(product))
-      if (permittedProducts.length > 0 &&
-          permittedProducts.map(product => product.identifier).indexOf(this.activeProduct.identifier) === -1 &&
-          !this.isOnOrganizationProduct) {
-        // Current product not permitted, switch
-        const productIndex = this.menu.indexOf(permittedProducts[0])
-
-        this.setActiveProductIndex(productIndex)
-        this.redirectToProductDefaultPage(this.menu[productIndex])
-      }
+      this.setActiveProductIndex(1)
+      // this.redirectToProductDefaultPage(this.menu[1])
     },
     openWorkspaceCreatePage () {
       this.$router.push({ name: 'CreateWorkspace' })
@@ -206,8 +198,8 @@ export default {
     this.initializeUI()
 
     // HelpCrunchService.showWidget()
-    this.$eventHub.$on('NODE_LIST_CHANGE_EVENT', this.fetchCurrentOrganizationManagedNodes)
-    this.$eventHub.$on('ORGANIZATION_DELETE_EVENT', this.reloadWorkspaceOrganizations)
+    // this.$eventHub.$on('NODE_LIST_CHANGE_EVENT', this.fetchCurrentOrganizationManagedNodes)
+    // this.$eventHub.$on('ORGANIZATION_DELETE_EVENT', this.reloadWorkspaceOrganizations)
   },
   beforeDestroy() {
     this.$eventHub.$off('NODE_LIST_CHANGE_EVENT')

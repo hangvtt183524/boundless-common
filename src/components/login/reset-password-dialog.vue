@@ -15,7 +15,7 @@
               counter='25'
               :rules="rules"
               :append-icon="passwordHidden ? 'visibility' : 'visibility_off'"
-              :append-icon-cb='() => passwordHidden = !passwordHidden'
+              @click:append='() => passwordHidden = !passwordHidden'
               :type="passwordHidden ? 'password' : 'text'"
               label="Password"
               :error-messages="passwordErrors"
@@ -30,7 +30,7 @@
               v-model='password2'
               data-test="confirm-password"
               :append-icon="password2Hidden ? 'visibility' : 'visibility_off'"
-              :append-icon-cb="() => password2Hidden = !password2Hidden"
+              @click:append="() => password2Hidden = !password2Hidden"
               :type="password2Hidden ? 'password' : 'text'"
               label="Confirm Password"
               :error-messages="password2Errors"

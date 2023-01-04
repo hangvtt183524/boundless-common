@@ -44,7 +44,8 @@ export default {
   },
   computed: {
     filteredWorkspaces () {
-      return matchSorter(this.userWorkspaces, this.search.toLowerCase(), { keys: ['name'] })
+      // return matchSorter(this.userWorkspaces, this.search.toLowerCase(), { keys: ['name'] })
+      return this.userWorkspaces
     }
   },
   methods: {

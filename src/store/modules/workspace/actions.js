@@ -28,3 +28,24 @@ export const fetchActivityLogs = ({ commit }, { filters }) => {
         })
     })
 }
+
+export const resetWorkspaceState = ({ commit, dispatch, state }) => {
+    // To be called when workspace changes, clears workspace-specific state data
+    commit(types.RESET)
+}
+
+export const retrieveWorkspace = ({ commit, dispatch, state }, { id }) => {
+    return new Promise((resolve, reject) => {
+        axios.get(`${API_URL}/workspace/${id}/`, { suppressErrors: true }).then((response) => {
+            resolve(response)
+        }).catch(err => {
+            if (err && err.response && err.response.data && err.response.data.error &&
+                err.response.data.error.status === 404) {
+                // Clear workspace from layout state and on 404 errors
+                Ls.updateInJson('layout.state', 'workspace', null)
+            }
+
+            reject(err)
+        })
+    })
+}

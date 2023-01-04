@@ -123,7 +123,7 @@
 
                   <div
                       slot="activator"
-                      v-if="header.text == $t('general.reload')"
+                      v-if="header.text == 'Reload'"
                       @click="reloadData"
                   >
                     <v-icon class="action-icon">refresh</v-icon>
@@ -262,7 +262,7 @@
           </tr>
         </template>
 
-        <template slot="no-data" class="text-xs-center">
+        <template slot="no-data">
           <div class="text-xs-center" v-if="!loading && !search"> | No data available</div>
           <v-alert slot='no-results' v-if="!loading && search" :value='true' color='error' icon='warning'>
             | {{ noSearchData }}
@@ -287,7 +287,7 @@
         <v-progress-circular v-show="loading && items.length" color="blue" indeterminate/>
         <v-btn class="btn-default"
                v-if="!hidePagination"
-               v-show="showPaginationButtons && !loading",
+               v-show="showPaginationButtons && !loading"
                @click="viewNext"
         >
           View More ({{ currentRows }} of {{ items.length }})

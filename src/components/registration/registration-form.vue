@@ -81,7 +81,7 @@
               ref="password"
               :rules="rules"
               :append-icon="passwordHidden ? 'visibility' : 'visibility_off'"
-              :append-icon-cb='() => passwordHidden = !passwordHidden'
+              @click:append='() => passwordHidden = !passwordHidden'
               :type="passwordHidden ? 'password' : 'text'"
               :label="$t('login.password') + ' *'"
               :error-messages="passwordErrors"
