@@ -1,5 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+import store from '../store'
+import { checkBeforeEachRoute } from './helpers'
 
 // Authen
 // ----------------------------------
@@ -116,5 +118,7 @@ let router = new Router({
     ],
     mode: 'history'
 })
+
+router.beforeEach((to, from, next) => checkBeforeEachRoute(store, to, from, next))
 
 export default router
