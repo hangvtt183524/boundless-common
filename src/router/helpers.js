@@ -73,10 +73,11 @@ export const checkBeforeEachRoute = function(vuexStore, to, from, next) {
       if (!(to.path.indexOf('/saml-router') > -1 || to.path.indexOf('/login/auth-token') > -1)) {
         return next({ name: 'home' })
       }
-    } else if (to.matched.some(route => route.meta.requiresApiKey)) {
-      // If route requires api key, check if workspace has api keys, redirect to api key setup page if not
-      return checkWorkspaceApiKey(to, from, next)
     }
+    // else if (to.matched.some(route => route.meta.requiresApiKey)) {
+    //   // If route requires api key, check if workspace has api keys, redirect to api key setup page if not
+    //   return checkWorkspaceApiKey(to, from, next)
+    // }
   }
   return next()
 }

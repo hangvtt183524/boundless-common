@@ -4,28 +4,28 @@ import * as actions from './actions'
 import * as getters from './getters'
 
 const initialState = {
-    allUsers: [],
-    allUsersCount: 0,
-    user: {},
-    currentUser: {
-        permissions: [],
-        roles: []
-    },
-    userOptions: {},
+  allUsers: [],
+  allUsersCount: 0,
+  user: {},
+  currentUser: {
+    permissions: [],
+    roles: []
+  },
+  userOptions: {},
 
-    showContactFlag: false
+  showContactFlag: false
 }
 
 export default {
-    namespaced: true,
+  namespaced: true,
 
-    initialState: _.cloneDeep(initialState),
+  initialState: _.cloneDeep(initialState),
 
-    state: initialState,
+  state: initialState,
 
-    getters,
+  getters,
 
-    actions,
+  actions,
 
-    mutations
+  mutations
 }

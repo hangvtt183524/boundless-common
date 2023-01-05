@@ -282,7 +282,7 @@ export default {
         return
       }
       this.setActiveProductIndex(index)
-      // this.redirectToProductDefaultPage(this.menu[index])
+      this.redirectToProductDefaultPage(this.menu[index])
       // EventTracker.sendEvent(EVENT_NAMES.PRODUCT_SELECTED)
     },
     getActiveUserDashboards () {

@@ -34,6 +34,7 @@ export default {
   ],
   computed: {
     ...mapGetters(['drawer']),
+    ...mapGetters('layout', ['userWorkspaces']),
     drawer: {
       get () {
         return this.$store.state.drawer

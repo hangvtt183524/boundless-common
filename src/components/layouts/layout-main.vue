@@ -120,8 +120,19 @@ export default {
       this.clearWorkspaceUserSecurityChecks()
     },
     performPermittedProductChecks () {
-      this.setActiveProductIndex(1)
-      // this.redirectToProductDefaultPage(this.menu[1])
+      // To be called after user roles loaded, if current product is not permitted for user, switches product to first
+      // available one
+      // Skips if we are on an organization product
+      const permittedProducts = this.menu.filter(product => this.isProductPermitted(product))
+      if (permittedProducts.length > 0 &&
+          permittedProducts.map(product => product.identifier).indexOf(this.activeProduct.identifier) === -1 &&
+          !this.isOnOrganizationProduct) {
+        // Current product not permitted, switch
+        const productIndex = this.menu.indexOf(permittedProducts[0])
+
+        this.setActiveProductIndex(productIndex)
+        this.redirectToProductDefaultPage(this.menu[productIndex])
+      }
     },
     openWorkspaceCreatePage () {
       this.$router.push({ name: 'CreateWorkspace' })
@@ -154,11 +165,13 @@ export default {
       })
     },
     reloadWorkspaceOrganizations () {
-      console.log('reload workspace organization')
+      // To be called when organizations deleted or selected workspace changed, re-loads workspace organizations
+      // and if selected organization is not in the list, selects a new one
+
       return new Promise((resolve) => {
         this.fetchUserWorkspaceOrganizations({ workspaceId: this.workspaceId }).then(() => {
           const workspaceOrganizationIds = this.captivePortalOrganizations.map(organization => organization.id)
-          if (workspaceOrganizationIds.indexOf(this.selectedOrganization.id) === -1) {
+          if (workspaceOrganizationIds.indexOf(this.selectedOrganizationId) === -1) {
             // We deleted selected organization, select another organization
             const workspaceOrganization = this.captivePortalOrganizations[0]
             if (workspaceOrganization) {
@@ -214,61 +227,29 @@ export default {
     // HelpCrunchService.hideWidget()
   },
   watch: {
-    currentUser (user) {
-      if (user && user.profile) {
-        // EventTracker.identifyUser(user.email, {
-        //   email: user.email,
-        //   firstName: user.profile.first_name ? user.profile.first_name : '',
-        //   lastName: user.profile.last_name ? user.profile.last_name : '',
-        //   user_uuid: user.secret_id
-        // })
-
-        // if (window.HelpCrunch) {
-        //   HelpCrunchService.updateUser({
-        //     user_id: user.secret_id,
-        //     email: user.email,
-        //     name: user.profile.full_name ? user.profile.full_name : '',
-        //     phone: user.profile.phone ? user.profile.phone : ''
-        //   })
-        //
-        //   if (user.profile.language) {
-        //     HelpCrunchService.setLanguage(user.profile.language)
-        //   }
-        // }
-
-        if (window.pendo) {
-          window.pendo.initialize({
-            visitor: {
-              id: user.secret_id,
-              email: user.email,
-              full_name: user.profile.full_name ? user.profile.full_name : ''
-            },
-            account: {
-              id: this.workspaceId
-            }
-          })
-        }
-      }
-    },
     selectedWorkspace (value, oldValue) {
       if (value.id && (!oldValue || value.id !== oldValue.id)) {
+        // Workspace changed, load workspace organizations, if not initial load
         if (oldValue && oldValue.id) {
           this.reloadWorkspaceOrganizations().then(() => {
+            // If on an organization product, redirect to organization node
             if (this.isOnOrganizationProduct) {
               if (this.selectedOrganization.id !== null) {
                 this.redirectToNode(this.selectedOrganization, this.selectedOrganization.id)
               } else {
+                // No workspace organizations, open organization creation page
                 this.openOrganizationCreatePage()
               }
             }
           })
         }
 
-        // eslint-disable-next-line no-prototype-builtins
+        // On workspace change, fetch user dashboards if not fetched
         if (!this.userDashboards.hasOwnProperty(value.id)) {
           this.fetchUserDashboards({ workspaceId: value.id })
         }
 
+        // Identify user here to set its organization field
         // EventTracker.identifyUser(this.currentUser.email, {
         //   email: this.currentUser.email,
         //   firstName: this.currentUser.profile.first_name,
@@ -285,6 +266,7 @@ export default {
         })
       }
 
+      // If help crunch integration is set, set user organization data
       // if (window.HelpCrunch) {
       //   HelpCrunchService.setCustomData({
       //     organization: (value && value.name) ? value.name : ''
@@ -294,10 +276,13 @@ export default {
 
     selectedOrganization (value, oldValue) {
       if (value.id && (!oldValue || value.id !== oldValue.id)) {
+        // On organization change, fetch organization nodes
         this.fetchCurrentOrganizationManagedNodes().then(() => {
+          // Call selectNode even if node has not changed here to update selected node fields
           if (this.selectedOrganizationDataFetched) {
             this.performOrganizationSwitchChecks()
           } else {
+            // Full organization data not fetched yet, set this flag so that we can perform checks once data fetched
             this.awaitingOrganizationSwitchChecks = true
           }
         })
@@ -329,8 +314,10 @@ export default {
 
     $route: {
       handler: function (newValue, oldValue) {
+        // Set active product depending on current url
         const routeProducts = this.getProductsForRoute(newValue, this.menu)
         if (routeProducts.length > 0 && routeProducts.indexOf(this.activeProductIndex) === -1) {
+          // Route belongs to another product than current one. Switch to first one.
           this.setActiveProductIndex(routeProducts[0])
         }
       },
@@ -340,8 +327,10 @@ export default {
     menu: {
       handler: function (newValue, oldValue) {
         if (newValue.length > 0 && oldValue.length === 0) {
+          // Set active product depending on current url, possible route handler triggered before menu was loaded
           const routeProducts = this.getProductsForRoute(this.$route, this.menu)
           if (routeProducts.length > 0 && routeProducts.indexOf(this.activeProductIndex) === -1) {
+            // Route belongs to other products than current one. Switch to first one.
             this.setActiveProductIndex(routeProducts[0])
           }
         }
@@ -354,6 +343,7 @@ export default {
             this.isOnOrganizationProduct &&
             this.captivePortalOrganizations.length === 0
         ) {
+          // No available organizations, open organization creation screen
           this.openOrganizationCreatePage()
         }
       },

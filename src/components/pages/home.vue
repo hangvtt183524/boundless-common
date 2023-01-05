@@ -1,5 +1,7 @@
 <template>
-  <div class="page-content" date-test="home-page"></div>
+  <div class="page-content" date-test="home-page">
+    Home
+  </div>
 </template>
 
 <script>

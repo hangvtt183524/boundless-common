@@ -1,6 +1,6 @@
 import SearchInput from "@/components/v2/search-input";
 import BaseTextInput from "@/components/v2/base-text-input";
-import BaseTable from "@/components/common/base-table";
+import BaseTable from "@/components/v2/base-table";
 import MultiAction from "@/components/v2/multi-action";
 import ConfirmDialog from "@/components/common/confirm-dialog";
 import BaseModal from "@/components/v2/base-modal";
