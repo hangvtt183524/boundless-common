@@ -8,6 +8,7 @@
     <left-navigation />
     <div class="overlay" :class="{'visible': drawer}" @click.stop="toggleDrawer"></div>
     <div class="layout-main-content">
+      <toolbar @tabBarStateChange="onTabBarStateChange" />
       <v-content :class="{'has-tab-bar': hasTabBar}" v-if="isCommonSetting">
         <v-container class="main-container" fluid :loading="loading">
           <v-layout>
@@ -38,6 +39,7 @@ import NodeSelectionsMixin from "@/mixins/node-selections.mixin";
 import {mapActions, mapGetters} from "vuex";
 
 import LeftNavigation from "@/components/common-menu/left-navigation";
+import Toolbar from "@/components/common-menu/toolbar";
 import ActivityIndicator from "@/components/common/activity-indicator";
 import NoPermissionsInfoModal from '@/components/organization/no-permission-info-modal'
 import SecurityCheckFailureInfoModal from "@/components/organization/security-check-failure-info-modal";
@@ -70,6 +72,7 @@ export default {
   },
   components: {
     LeftNavigation,
+    Toolbar,
     ActivityIndicator,
     NoPermissionsInfoModal,
     SecurityCheckFailureInfoModal,
@@ -99,6 +102,9 @@ export default {
     ...mapActions('workspace/network', ['fetchUserDashboards']),
     ...mapActions('layout', ['setActiveProductIndex', 'fetchUserWorkspaces', 'fetchUserWorkspaceOrganizations',
       'selectNode', 'selectOrganization', 'clearOrganizationSelections']),
+    onTabBarStateChange (hasTabBar) {
+      this.hasTabBar = hasTabBar
+    },
     openNoPermissionsModal () {
       this.showNoPermissionsModal = true
     },
@@ -429,6 +435,7 @@ export default {
     width: calc(100% - 265px);
     right: 0;
     float: right;
+    top: -30px;
     z-index: 100;
     @media (min-width: 768px) and (max-width: 1024px) {
       width: calc(100% - 60px);
