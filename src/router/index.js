@@ -634,6 +634,6 @@ let router = new Router({
   mode: 'history'
 })
 
-// router.beforeEach((to, from, next) => checkBeforeEachRoute(store, to, from, next))
+router.beforeEach((to, from, next) => checkBeforeEachRoute(store, to, from, next))
 
 export default router
