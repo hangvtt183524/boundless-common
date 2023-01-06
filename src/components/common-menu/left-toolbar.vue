@@ -12,7 +12,7 @@
               class="user-menu action"
               v-for="subGroup of menuSubGroups"
               :key="subGroup.name"
-              v-show="isMenuItemVisible(subGroup)"
+
               v-model="menuFlags[subGroup.name]"
               top left offset-y open-on-hover
               data-test="user-menu-1"

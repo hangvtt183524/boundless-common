@@ -6,13 +6,11 @@
   >
     <v-list-tile class="menu-description">
       <v-list-tile-content>
-        <v-list-tile-title>{{ selectedWorkspace.name }}</v-list-tile-title>
+        <v-list-tile-title>Workspaces</v-list-tile-title>
       </v-list-tile-content>
     </v-list-tile>
 
-    <div class="search-container">
-
-    </div>
+    <div class="search-container"></div>
 
     <perfect-scrollbar class="workspace-selector__scroll-holder">
       <v-list-tile
@@ -20,7 +18,6 @@
           :key="workspace.id"
           :class="{'menu-item--active': selectedWorkspace.id === workspace.id}"
           @click="onMenuItemClick(workspace)"
-          data-test="item-org-settings-general"
       >
         <v-list-tile-content>
           <v-list-tile-title>{{ workspace.name }}</v-list-tile-title>
@@ -32,7 +29,6 @@
 
 <script>
 import NodeSelectionsMixin from "@/mixins/node-selections.mixin";
-import matchSorter from 'match-sorter'
 
 export default {
   name: 'workspace-selector',

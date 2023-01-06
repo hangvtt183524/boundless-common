@@ -79,34 +79,7 @@ const UserPermissionsMixin = {
       return this.userActions.hasOwnProperty(nodeId) && this.userActions[nodeId].indexOf(action) > -1
     },
     hasPermission (action, nodeId, productUserObject = null) {
-      if (this.hasDirectPermissionOnNode(action, nodeId)) {
-        return true
-      } else {
-        if (nodeId) {
-          // Try to see if we have permission on parent level
-          const nodeItem = this.getNodeById(nodeId, productUserObject)
-          if (nodeItem) {
-            let nodeParent
-            if (nodeItem.type === 'workspace') {
-              // Workspaces have no parent, use null by default for them
-              nodeParent = null
-            } else if (nodeItem.type === 'organization') {
-              // For organizations, use parent_workspace as parent
-              nodeParent = this.userWorkspaceOrganizations.find(node => node.id === nodeId).parent_workspace
-            } else {
-              nodeParent = nodeItem.parent
-            }
-
-            return this.hasPermission(action, nodeParent)
-          } else {
-            // Current node is not found, probably not loaded yet. Try with a global permission
-            return this.hasPermission(action, null)
-          }
-        } else {
-          // If node id is null, it means we have no parent anymore
-          return false
-        }
-      }
+      return true
     },
     hasAnyOrganizationPermission () {
       return this.userOrganizationNodes && this.userOrganizationNodes.length > 0
