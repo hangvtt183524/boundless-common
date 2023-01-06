@@ -31,4 +31,11 @@ export const bootstrap = vueLifecycles.bootstrap;
 export const mount = vueLifecycles.mount;
 export const unmount = vueLifecycles.unmount;
 
+export async function getCurrentUser () {
+  if (!store.getters['user/currentUser'].id) {
+    await store.dispatch('user/fetchCurrentUser')
+  }
+  return store.getters['user/currentUser']
+}
+
 export * from './shareUIComponents'

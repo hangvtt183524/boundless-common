@@ -26,9 +26,9 @@
           </span>
         </div>
 
-        <v-icon class="select-icon">| {{ loading ? 'fas fa-spinner fa-spin' : 'arrow_drop_down' }}</v-icon>
+        <v-icon class="select-icon">{{ loading ? 'fas fa-spinner fa-spin' : 'arrow_drop_down' }}</v-icon>
 
-        <v-icon class="clear-icon" v-if="clearActionVisible" @click.stop="onClearClick()">| close</v-icon>
+        <v-icon class="clear-icon" v-if="clearActionVisible" @click.stop="onClearClick()">close</v-icon>
       </div>
 
       <div class="options" v-show="menuVisible" ref="options">

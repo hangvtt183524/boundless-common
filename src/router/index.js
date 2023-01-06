@@ -105,19 +105,19 @@ let router = new Router({
           }
         },
         {
-          path: '/captive/workspace/create',
+          path: '/captive/workspace/create#/captive/workspace/create',
           name: 'CreateWorkspace',
         },
         {
-          path: '/captive/organization/create',
+          path: '/captive/organization/create#/captive/organization/create',
           name: 'CreateOrganizationModeSelect',
         },
         {
-          path: '/captive/organization/create/manual',
+          path: '/captive/organization/create#/captive/organization/create/manual',
           name: 'CreateOrganizationManual',
         },
         {
-          path: '/captive/organization/create/quick',
+          path: '/captive/organization/create#/captive/organization/create/quick',
           name: 'CreateOrganizationQuick',
         },
         // {
