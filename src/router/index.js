@@ -567,44 +567,6 @@ let router = new Router({
       ]
     },
     {
-      path: '/logs',
-      component: LayoutMain,
-      meta: { requiresAuth: true },
-      children: [
-        {
-          path: 'workspace/:workspaceId',
-          children: [
-            {
-              path: 'syslog-servers',
-              name: 'SyslogServerList',
-              meta: {
-                descriptiveName: 'Syslog Servers Listing'
-              }
-            },
-            {
-              path: 'syslog-servers/new',
-              name: 'NewSyslogServer',
-              meta: {
-                title: 'Launch Syslog Server',
-                descriptiveName: 'Syslog Server Detail'
-              }
-            },
-            {
-              path: 'syslog-servers/:syslogServerId',
-              name: 'SyslogServerDetail',
-              props: (route) => ({
-                syslogServerId: route.params.syslogServerId
-              }),
-              meta: {
-                title: 'Server Details',
-                descriptiveName: 'Syslog Server Detail'
-              }
-            }
-          ]
-        }
-      ]
-    },
-    {
       path: '/captive',
       meta: { requiresAuth: true },
       children: [
