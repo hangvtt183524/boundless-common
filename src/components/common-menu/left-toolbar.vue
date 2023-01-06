@@ -23,7 +23,7 @@
                 slot="activator"
                 :class="{ 'active': menuFlags[subGroup.name] }"
             >
-              <img class="documentation-image" :src="`@/assets/images/${subGroup.image}`" />
+              <img class="documentation-image" :src="require(`@/assets/images/${subGroup.image}`)" />
             </div>
 
             <v-list
@@ -247,3 +247,141 @@ export default {
 
 }
 </script>
+
+<style lang="scss">
+@import "styles/colors.scss";
+@import "styles/v2/colors.scss";
+
+.left-toolbar {
+  position: relative;
+  height: 65px;
+  background: #173773;
+  padding: 0 32px;
+
+  &.extended-icon-set {
+    padding: 0 12px;
+  }
+
+  .toolbar-actions {
+    margin-right: 0 !important;
+
+    .action {
+      & > div {
+        padding: 9px 0;
+        height: 55px;
+        line-height: 55px;
+        text-align: center;
+        position: relative;
+      }
+
+      &:first-child {
+        &::before {
+          display: none;
+        }
+      }
+
+      &:not(:last-child) {
+        & > div {
+          padding-right: 9px;
+        }
+      }
+
+      .v-icon {
+        margin-top: 15px;
+        color: $blue-medium;
+      }
+    }
+  }
+  .user-menu {
+    z-index: 10 !important;
+  }
+
+  .doc-img-container {
+    //padding: 10px;
+    z-index: 110 !important;
+    &.active {
+      background: $blue-medium;
+    }
+  }
+
+  .support-img-container {
+    padding: 11px 13px 13px 11px;
+    &.active {
+      background: $blue-medium;
+    }
+  }
+
+  .profile-image-container {
+    padding: 11px 13px;
+    &.active {
+      background: $blue-medium;
+    }
+  }
+
+  .user-roles-image-container {
+    padding: 10px;
+    &.active {
+      background: $blue-medium;
+    }
+  }
+}
+
+.left-toolbar-custom-user-menu {
+  min-width: 265px !important;
+  min-height: 165px !important;
+  left: 0 !important;
+  z-index: 3000 !important;
+  background: #173773 !important;
+
+  .close-icon {
+    position: absolute;
+    top: 19px;
+    right: 24px;
+  }
+  .v-list {
+    padding: 19px 0 19px 0 !important;
+    height: 100%;
+    background: #173773 !important;
+  }
+
+  .v-list__tile {
+    font-size: 14px;
+    background: #173773 !important;
+    color: #FFF;
+    height: 30px;
+    padding: 0 24px 0 32px;
+
+    .v-list__tile__avatar {
+      min-width: unset;
+      margin-right: 10px;
+    }
+
+    .disabled-item {
+      pointer-events: none;
+      text-decoration: line-through !important;
+    }
+  }
+  .v-list__tile:not(:last-child) {
+    border-bottom: 1px solid #C8CCD5;
+  }
+  .menu-item .v-list__tile:hover {
+    background: linear-gradient(270deg, rgba(#2260DD, 0.5) 0%, rgba(34, 96, 221, 0) 130.57%) !important;
+  }
+  .menu-item--active .v-list__tile {
+    color: #4b83f0 !important;
+  }
+
+  .menu-description {
+    background: #173773 !important;
+
+    .v-list__tile {
+      color: #FFF;
+      text-transform: uppercase;
+      font-family: Fira Sans;
+      font-style: normal;
+      font-weight: bold;
+      font-size: 14px;
+    }
+  }
+}
+</style>
