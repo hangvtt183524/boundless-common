@@ -52,7 +52,11 @@
             <template v-slot:activator v-if="!subGroupItem.always_open">
               <v-list-tile class="top-subgroup"
                            @click.native="redirectLink(getFitSubMenu(subGroupItem, activeProductItem.submenu))"
-                           :class="{'menu-item': subGroupItem.leaf, 'active-link': fitSubMenuIsActive(subGroupItem, activeProductItem.submenu), 'disabled-item': !fitSubmenuHasActiveRoute(subGroupItem, activeProductItem.submenu)}"
+                           :class="{
+                             'menu-item': subGroupItem.leaf,
+                             'active-link': fitSubMenuIsActive(subGroupItem, activeProductItem.submenu),
+                             'disabled-item': !fitSubmenuHasActiveRoute(subGroupItem, activeProductItem.submenu)}
+                            "
               >
                 <v-list-tile-action class="top-subgroup__title-icon">
                   <img :src="getSubGroupIcon(subGroupItem)" />
@@ -356,26 +360,26 @@ export default {
         return true
       }
 
-      const menuItems = [subItem, ...(subItem.tabs || [])].filter(item => !item.route)
-      const commonRouteParams = this.getRouteParams()
+      // const menuItems = [subItem, ...(subItem.tabs || [])].filter(item => !item.route)
+      // const commonRouteParams = this.getRouteParams()
 
-      for (let index = 0; index < menuItems.length; index++) {
-        const menuItem = menuItems[index]
-        const routeParams = {
-          ...commonRouteParams,
-          ...(menuItem.route_parameters || {})
-        }
-
-        const routePath = this.$router.resolve({ name: this.getMenuItemRoute(menuItem), params: routeParams }).route.path
-
-        if (!routePath || routePath === '/') {
-          continue
-        }
-
-        if (this.$route.path.indexOf(routePath) > -1) {
-          return true
-        }
-      }
+      // for (let index = 0; index < menuItems.length; index++) {
+      //   const menuItem = menuItems[index]
+      //   const routeParams = {
+      //     ...commonRouteParams,
+      //     ...(menuItem.route_parameters || {})
+      //   }
+      //
+      //   const routePath = this.$router.resolve({ name: this.getMenuItemRoute(menuItem), params: routeParams }).route.path
+      //
+      //   if (!routePath || routePath === '/') {
+      //     continue
+      //   }
+      //
+      //   if (this.$route.path.indexOf(routePath) > -1) {
+      //     return true
+      //   }
+      // }
 
       return false
     },
