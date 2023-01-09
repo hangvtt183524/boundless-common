@@ -26,6 +26,7 @@ import ClickActionHeaderCell from "@/components/v2/click-action-header-cell";
 import TableMultiAdd from "@/components/v2/table-multi-add";
 import BaseCard from "@/components/v2/base-card";
 import BaseNSwitch from "@/components/v2/base-n-switch";
+import PhoneNumberInput from "@/components/v2/phone-number-input";
 
 import ActivityLog from '@/components/activity-log/activity-log'
 import DeleteConfirmDialog from '@/components/settings/delete-confirm-dialog'
@@ -81,6 +82,7 @@ export {
     TableMultiAdd,
     BaseCard,
     BaseNSwitch,
+    PhoneNumberInput,
 
     ActivityLog,
     DeleteConfirmDialog,
