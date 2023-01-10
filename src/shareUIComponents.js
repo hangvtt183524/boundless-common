@@ -52,6 +52,7 @@ import DatePicker from "@/components/common/date-picker";
 import TimePicker from "@/components/common/time-picker";
 import DeleteWarningDialog from "@/components/common/delete-warning-dialog";
 import CloneConfirmDialog from "@/components/common/clone-confirm-dialog";
+import TelInput from "@/components/common/tel-input/tel-input";
 
 export {
     SearchInput,
@@ -107,5 +108,6 @@ export {
     DatePicker,
     TimePicker,
     DeleteWarningDialog,
-    CloneConfirmDialog
+    CloneConfirmDialog,
+    TelInput
 }
